@@ -1,0 +1,7 @@
+.listContainer {
+    display: flex;
+    flex-flow: column wrap;
+    justify-items: center;
+    justify-content: center;
+    margin: 20px;
+}

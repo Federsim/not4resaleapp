@@ -1,0 +1,10 @@
+.cardDetail {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.tituloDetailContainer{
+    font-size: 50px;
+    color: rgb(82, 47, 114);
+}

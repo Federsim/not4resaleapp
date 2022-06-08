@@ -1,11 +1,14 @@
+import { Link, NavLink } from 'react-router-dom'
+import CartWidget from '../CartWidget/CardWidget';
+
 const Navbar = (props) => {
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+          <Link to='/' class="navbar-brand" href="./">
             <img src={require('./IMG/LogoNavBar.jpg')} alt="" height="90px" width="100px" />
-          </a>
+          </Link>
           <button
             class="navbar-toggler"
             type="button"
@@ -19,18 +22,11 @@ const Navbar = (props) => {
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
-              <a class="nav-link" href="#">
-                Indumentaria
-              </a>
-              <a class="nav-link" href="#">
-                Zapatillas
-              </a>
-              <a class="nav-link" href="#">
-                Accesorios
-              </a>
+              <NavLink className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link' } aria-current="page" href="./" to='/'>Home</NavLink>
+              <NavLink className={({isActive}) => isActive ? "nav-link active" : "nav-link" } aria-current="page" href="./" to='/category/Indumentaria'>Indumentaria</NavLink>
+              <NavLink className={({isActive}) => isActive ? "nav-link active" : "nav-link" } aria-current="page" href="./" to='/category/Zapatillas'>Zapatillas</NavLink>
+              <NavLink className={({isActive}) => isActive ? "nav-link active" : "nav-link" } aria-current="page" href="./" to='/category/Accesorios'>Accesorios</NavLink>
+              <CartWidget className="CartWidget" />
             </div>
           </div>
         </div>
