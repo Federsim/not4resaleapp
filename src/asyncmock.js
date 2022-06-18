@@ -7,6 +7,7 @@ const products = [
     category: "Indumentaria",
     price: 3000,
     img: "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/753/709/products/0c5f30e0ddbeadb58086e269bab9b2471-4e39b2928beef5a89416311245108561-1024-1024.jpg",
+    stock:10,
   },
   {
     id: "15",
@@ -16,6 +17,7 @@ const products = [
     category: "Indumentaria",
     price: 3000,
     img: "https://d2r9epyceweg5n.cloudfront.net/stores/001/090/276/products/remera-anti-social-social-club-assc-aesthetic-tumblr-edgy-d_nq_np_688761-mla32203914944_092019-f1-824cd933d6a20a41c315888100293773-1024-1024.jpg",
+    stock:10,
   },
   {
     id: "24",
@@ -25,6 +27,7 @@ const products = [
     category: "Zapatillas",
     price: 34000,
     img: "https://media.restocks.net/products/554724-122/air-jordan-1-mid-gym-red-black-white-1-1000.png",
+    stock:10,
   },
   {
     id: "25",
@@ -34,6 +37,7 @@ const products = [
     category: "Zapatillas",
     price: 29000,
     img: "https://m.media-amazon.com/images/I/51pbXeoxqzL._AC_UY395_.jpg",
+    stock:10,
   },
   {
     id: "28",
@@ -43,6 +47,7 @@ const products = [
     category: "Accesorios",
     price: 9000,
     img: "https://images.footlocker.com/is/image/FLEU/319642145181_01?wid=2000&hei=2000&fmt=png-alpha",
+    stock:10,
   },
 
 ];

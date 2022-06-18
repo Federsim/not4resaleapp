@@ -43,9 +43,6 @@ const ItemListContainer = (props) => {
   if (loading) {
     return <h1>Cargando...</h1>;
   }
-
-  /* funcion para ejecutar dsp del montaje y guardar productos en el estado, se guarda para que react valide los datos y en caso de un cambio vuelva a renderizar */
-
   return (
     <div className="listContainer">
       <h1>{props.greeting}</h1>
