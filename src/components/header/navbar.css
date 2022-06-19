@@ -2,3 +2,7 @@
     display: flex;
     align-items: flex-end;
 }
+
+.navbar {
+    width: 100%;
+}

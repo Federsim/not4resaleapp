@@ -1,4 +1,4 @@
-const products = [
+/* const products = [
   {
     id: "14",
     name: "Remera AntiSocial negra",
@@ -75,3 +75,4 @@ export const getProductById = (id) => {
     }, 2000);
   });
 };
+ */
