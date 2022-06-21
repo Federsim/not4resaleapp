@@ -4,14 +4,14 @@ import CartContext from '../../context/CartContext'
 import Counter from '../Counter/Counter'
 import { Link } from 'react-router-dom'
 
-const ItemDetail = ({ id, name, description, img, price ,stock }) => {
+const ItemDetail = ({ id, name, description, img, price ,stock, brand, size }) => {
   const [quantityAdded, setQuantityAdded] = useState(0)
 
     const { addItem } = useContext(CartContext)
 
     const handleOnAdd = (quantity) => {
       console.log(`se agregaron ${quantity} ${name}`)
-        addItem({ id, name, price, quantity})
+        addItem({ id, name, price, quantity, img, brand, size})
         setQuantityAdded(quantity)
     }
 
@@ -22,6 +22,8 @@ const ItemDetail = ({ id, name, description, img, price ,stock }) => {
         <img src={img} className="card-img-top" alt="..." />
         <div class="card-body">
           <p class="card-text">{description}</p>
+          <p class="card-text"> Marca: {brand}</p>
+          <p class="card-text">Talle: {size}</p>
           <p class="card-text precio">Precio: {price}$</p>
         </div>
         <div>

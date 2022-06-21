@@ -23,7 +23,20 @@ export const CartProvider = ({ children }) => {
     const addItem = (productToAdd) => {
       if(!isInCart(productToAdd.id)) {
         setCart([...cart, productToAdd])
-      }
+      }else {
+        const newCart = cart.map(prod => {
+            if(prod.id === productToAdd.id) {
+                const newProduct = {
+                    ...prod,
+                    quantity: productToAdd.quantity
+                }
+                return newProduct
+            } else {
+               return prod 
+            }
+        })
+        setCart(newCart)
+    }
     }
 
     const updatetotalPurchase = () => {
@@ -48,10 +61,6 @@ export const CartProvider = ({ children }) => {
         setCart([])
     }
 
-    const getProductQuantity = (id) => {
-        return cart.find(prod => prod.id === id)?.quantity
-    }
-
     return (
         <CartContext.Provider value={{ 
             cart,
@@ -61,8 +70,6 @@ export const CartProvider = ({ children }) => {
             isInCart,
             clearCart,
             totalPurchase,
-            getProductQuantity,
-
         }}>
             { children }
         </CartContext.Provider>

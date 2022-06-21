@@ -38,7 +38,7 @@ const ItemListContainer = (props) => {
     <div className="listContainer">
       <h1>{props.greeting}</h1>
       {products.length > 0 ? (
-        <ItemList products={products} />
+        <ItemList products={products}/>
       ) : (
         <h1>No hay Stock</h1>
       )}
