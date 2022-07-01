@@ -1,0 +1,9 @@
+.Success {
+    background-color: rgb(34, 99, 34);
+    z-index: 100;
+}
+
+.Error {
+    background-color: rgb(132, 43, 43);
+    z-index: 100;
+}

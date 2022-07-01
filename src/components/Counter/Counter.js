@@ -13,10 +13,12 @@ const Counter = ({ onAdd, stock, initial = 1 }) => {
   return (
     <div>
       <p>{count}</p>
-      <button onClick={increment}>+</button>
-      <button onClick={decrement}>-</button>
+      <button className="btn btn-secondary" onClick={increment}>+</button>
+      <button className="btn btn-secondary" onClick={decrement}>-</button>
+      <br/>
+      <br/>
       <div>
-        <button className="Button" onClick={() => onAdd(count)}>
+        <button  className="btn btn-primary" onClick={() => onAdd(count)}>
           Agregar al carrito
         </button>
       </div>

@@ -3,31 +3,12 @@ import CartItem from "../CartItem/CartItem"
 import { useContext } from "react"
 import { Link } from 'react-router-dom'
 import CartContext from '../../context/CartContext'
-import { addDoc, collection } from 'firebase/firestore'
-import { db } from '../../services/firebase/index'
-
+import { useNavigate } from 'react-router-dom'
 
 const CartList = () => {
 
 const { cart, clearCart, totalPurchase, totalQuantity } = useContext(CartContext) 
-
-const handleCreateOrder = () => {
-    const objOrder = {
-        user : {
-            name: 'Federico Simon',
-            email: 'askdlj@askldj.com',
-            phone: '1823712312',
-            address: 'jkahsdjkhasd 123'
-        },
-        items: cart,
-        total: totalPurchase,
-    }
-    console.log(objOrder)
-    const collectionRef = collection(db,'orders')
-    addDoc(collectionRef, objOrder).then(({id}) => {
-        console.log(id)
-    })
-}
+const navigete = useNavigate()
 
     return (
         <div className="container-fluid">
@@ -56,7 +37,7 @@ const handleCreateOrder = () => {
                             <dt>Total:</dt>
                             <dd className="text-right text-dark b ml-3"><strong>${totalPurchase}</strong></dd>
                         </dl>
-                        <hr/> <a href="#" className="btn btn-out btn-primary btn-square btn-main" onClick={handleCreateOrder} data-abc="true"> Make Purchase </a> <Link to='/' href="#" className="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continue Shopping</Link> <br/> <a href="#" className="btn btn-out btn-primary btn-square btn-main" onClick={() => clearCart()}  data-abc="true" > Clear Cart </a>
+                        <hr/> <button className="btn btn-out btn-primary btn-square btn-main" onClick={()=>{navigete('/cartCheckout')}} data-abc="true"> Checkout </button> <Link to='/' className="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continue Shopping</Link> <br/> <button className="btn btn-out btn-primary btn-square btn-main" onClick={() => clearCart()}  data-abc="true" > Clear Cart </button>
                     </div>
                 </div>
             </aside>

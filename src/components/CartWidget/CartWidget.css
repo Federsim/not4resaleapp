@@ -2,7 +2,8 @@
     display: flex;
     color: aliceblue;
     font-size: 20px;
-    position: relative;
+    position: absolute;
+    right: 100px;
     align-items: center;
 }
 
