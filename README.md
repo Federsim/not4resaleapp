@@ -1,9 +1,9 @@
 # React App
 
-Ecommerce en React, Not4resale es una tienda de venta de productos exclusivos.
+Ecommerce in React, Not4resale it's a brand for only exclusive stuff
 
 ## Framework
-El framewor utilizado es Bootstrap v5.0 con arreglos en CSS.
+El framewor utilizado es Bootstrap v5.0.
 
 ### Built Using
 
