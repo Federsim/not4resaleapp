@@ -35,7 +35,7 @@ const CartItem = ({ img, price, id, brand, size, name, quantity }) => {
                 <td>
                   <figure className="itemside align-items-center">
                     <div className="aside">
-                      <img src={img} className="img-sm" />
+                      <img src={img} className="img-sm" alt=""/>
                     </div>
                     <figcaption className="info">
                       {" "}

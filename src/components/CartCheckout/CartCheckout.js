@@ -1,6 +1,6 @@
 import "./CartCheckout.css";
 import { db } from "../../services/firebase/index";
-import { useState, useContext, useRef } from "react";
+import { useState, useContext } from "react";
 import CartContext from "../../context/CartContext";
 import CartCheckoutItem from "../CartCheckoutItem/CartCheckoutItem";
 import { useNotification } from "../Notification/Notification";
@@ -19,7 +19,7 @@ import { useForm } from "react-hook-form";
 const CartCheckout = () => {
   const [loading, setLoading] = useState(false);
   const { cart, totalPurchase, totalQuantity, clearCart } = useContext(CartContext);
-  const total = totalPurchase;
+
   const setNotification = useNotification();
 
   /* Form States */
@@ -35,7 +35,7 @@ const CartCheckout = () => {
   const [cardNumber, setCardNumber] = useState('')
   const [expiration, setExpiration] = useState('')
   const [cvv, setCvv] = useState('')
-////////////////////////////////
+
 
 /* Form Validation */
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -45,10 +45,12 @@ const CartCheckout = () => {
   const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
 
   /* email confirmaiton */
-
-
-
   const handleCreateOrder = () => {
+    if (totalQuantity === 0) {
+          setNotification("error", "El carrito esta vacio, debes agregar productos para crear la orden")
+        } else {
+
+          
     setLoading(true)
     const objOrder = {
       buyer: {
@@ -66,7 +68,7 @@ const CartCheckout = () => {
         cvv:cvv,
       },
       items: cart,
-      total: total,
+      total: totalPurchase,
       date: date,
     };
 
@@ -115,14 +117,14 @@ const CartCheckout = () => {
       .catch((error) => {
         if (error.type === "out_of_stock") {
           setNotification("error", "Hay productos que no tienen stock");
-        } else {
+        }else {
           console.log(error);
         }
       })
       .finally(() => {
         setLoading(false);
       });
-  };
+  };}
   if (loading) {
     return (
       <div>
@@ -130,7 +132,9 @@ const CartCheckout = () => {
         <div id="loader"></div>
       </div>
     );
-  }  
+  }
+
+  
 
   return (
     <div className="container">
@@ -172,6 +176,7 @@ const CartCheckout = () => {
                   placeholder=""
                   required=""
                   {...register("firstName", {
+                    onChange: ({ target }) => setFirstName(target.value),
                     required: {
                       value: true,
                       message: "Campo obligatorio"
@@ -184,11 +189,11 @@ const CartCheckout = () => {
                 <input
                   type="text"
                   className="form-control"
-                  onChange={({ target }) => setLastName(target.value)}
                   id="lastName"
                   placeholder=""
                   required=""
                   {...register("lastName", {
+                    onChange:({ target }) => setLastName(target.value),
                     required: {
                       value: true,
                       message: "Campo obligatorio"
@@ -203,9 +208,9 @@ const CartCheckout = () => {
                 type="email"
                 className="form-control"
                 id="email"
-                onChange={({ target }) => setEmail(target.value)}
                 placeholder="you@example.com"
                 {...register("email", {
+                  onChange:({ target }) => setEmail(target.value),
                   required: {
                     value: true,
                     message: "Campo obligatorio"
@@ -217,7 +222,7 @@ const CartCheckout = () => {
                 })}
               />
               {errors.email && <span className="text-danger">{errors.email.message}</span>}
-{/*             </div>
+            </div>
             <div className="mb-3">
               <label htmlFor="emailConfirmation">Confirm Email</label>
               <input
@@ -225,16 +230,12 @@ const CartCheckout = () => {
                 className="form-control"
                 id="emailConfirmation"
                 placeholder="you@example.com"
-                {...register("confirm_email", {
+                {...register("emailConfirmation", {
                   required: true,
-                  validate: val => {
-                    if (watch('email') != val) {
-                      return  
-                    } 
-                  },
+                  validate: value => value === watch('email') || "Email does not match" ,
                 })}
                 />
-              {errors.emailConfirmation && <span className="text-danger">your email does not match</span>} */}
+              {errors.emailConfirmation && <span className="text-danger">{errors.emailConfirmation.message}</span>}
             </div>
             <div className="mb-3">
               <label htmlFor="Phone">Phone Number</label>
@@ -242,8 +243,8 @@ const CartCheckout = () => {
                 type="number"
                 className="form-control"
                 id="phone"
-                onChange={({ target }) => setPhone(target.value)}
                 {...register("phone", {
+                  onChange:({ target }) => setPhone(target.value),
                   required: {
                     value: true,
                     message: "Campo obligatorio"
@@ -258,10 +259,11 @@ const CartCheckout = () => {
                 type="text"
                 className="form-control"
                 id="address"
-                onChange={({ target }) => setAddress(target.value)}
+                
                 placeholder="calle falsa 1234"
                 required=""
                 {...register("address", {
+                  onChange:({ target }) => setAddress(target.value),
                   required: {
                     value: true,
                     message: "Campo obligatorio"
@@ -388,7 +390,6 @@ const CartCheckout = () => {
             <hr className="mb-4" />
             <button
               className="btn btn-primary btn-lg btn-block"
-              /* onClick={handleCreateOrder} */
               type="submit"
             >
               Create order
@@ -400,13 +401,13 @@ const CartCheckout = () => {
         <p className="mb-1">© 2022 Not4resale </p>
         <ul className="list-inline">
           <li className="list-inline-item">
-            <a href="#">Privacy</a>
+            <a href="./">Privacy</a>
           </li>
           <li className="list-inline-item">
-            <a href="#">Terms</a>
+            <a href="./">Terms</a>
           </li>
           <li className="list-inline-item">
-            <a href="#">Support</a>
+            <a href="./">Support</a>
           </li>
         </ul>
       </footer>
